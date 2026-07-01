@@ -1,0 +1,2 @@
+# models/metadata/ — Metadata atau parameter konfigurasi dari model ML
+# Contoh: hyperparameters.json, model_metrics.json, dll.

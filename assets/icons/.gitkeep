@@ -1,0 +1,12 @@
+# assets/icons/ — Lucide SVG Icons
+# Tambahkan file SVG individual dari lucide.dev sesuai kebutuhan.
+# Hanya icon yang dipakai di dashboard — bukan seluruh package.
+# Contoh:
+#   - home.svg
+#   - bar-chart-2.svg
+#   - brain-circuit.svg
+#   - sparkles.svg
+#   - sun.svg
+#   - moon.svg
+#   - x.svg
+#   - send.svg

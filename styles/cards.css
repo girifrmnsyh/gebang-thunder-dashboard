@@ -1,0 +1,115 @@
+/* ============================================================
+   styles/cards.css — Card component styles
+   ============================================================ */
+
+/* ── Base card ───────────────────────────────────────────────── */
+.gt-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  transition: var(--transition);
+}
+
+.gt-card:hover {
+  border-color: rgba(59, 130, 246, 0.4);
+  box-shadow: 0 8px 32px rgba(59, 130, 246, 0.08);
+}
+
+/* ── Card header ─────────────────────────────────────────────── */
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.card-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0;
+}
+
+.card-icon {
+  font-size: 18px;
+}
+
+.card-tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: rgba(59, 130, 246, 0.15);
+  color: var(--primary);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* ── Metric card values ──────────────────────────────────────── */
+.card-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.04em;
+  line-height: 1.2;
+}
+
+.card-delta {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-top: 4px;
+}
+
+.card-delta.positive {
+  color: #10B981;
+  background: rgba(16, 185, 129, 0.12);
+}
+
+.card-delta.negative {
+  color: #EF4444;
+  background: rgba(239, 68, 68, 0.12);
+}
+
+.card-subtitle {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin: 8px 0 0;
+}
+
+/* ── Insight card ────────────────────────────────────────────── */
+.insight-card .card-body {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.insight-card.wide {
+  grid-column: span 2;
+}
+
+/* ── Chart card header ───────────────────────────────────────── */
+.chart-card-header {
+  margin-bottom: 8px;
+}
+
+.chart-card-header .card-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-transform: none;
+  letter-spacing: -0.01em;
+}
+
+/* ── Table title ─────────────────────────────────────────────── */
+.table-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}

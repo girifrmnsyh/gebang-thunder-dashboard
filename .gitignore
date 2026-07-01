@@ -1,0 +1,45 @@
+# ── Secrets & Credentials ────────────────────────────────────────────────────
+.streamlit/secrets.toml
+
+# ── Python cache & bytecode ──────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+
+# ── Virtual environments ─────────────────────────────────────────────────────
+.venv/
+venv/
+env/
+.env
+
+# ── Conda ────────────────────────────────────────────────────────────────────
+*.conda
+conda-lock.yml
+
+# ── Data: raw dataset dari panitia (bisa besar, tidak perlu di-commit) ───────
+# Uncomment baris di bawah jika dataset terlalu besar untuk di-push ke repo.
+# data/raw/
+
+# ── Model artifacts ──────────────────────────────────────────────────────────
+models/saved/*.pkl
+models/saved/*.joblib
+models/saved/*.h5
+
+# ── OS & editor ──────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# ── Testing & coverage ───────────────────────────────────────────────────────
+.pytest_cache/
+.coverage
+htmlcov/
+
+# ── Build artifacts ───────────────────────────────────────────────────────────
+dist/
+build/
+*.egg-info/

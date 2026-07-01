@@ -1,0 +1,66 @@
+/* ============================================================
+   styles/typography.css — Typography system
+   PRD Section 6: Inter, max 3 level header, 8pt grid
+   ============================================================ */
+
+/* ── Font import (fallback jika main.css tidak di-load) ──────── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+/* ── Base typography ─────────────────────────────────────────── */
+body, .stApp {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Heading scale (max 3 levels per PRD) ────────────────────── */
+h1, .h1 {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.15;
+  color: var(--text-primary);
+}
+
+h2, .h2 {
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.25;
+  color: var(--text-primary);
+}
+
+h3, .h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.4;
+  color: var(--text-primary);
+}
+
+/* ── Body text variants ──────────────────────────────────────── */
+.text-secondary { color: var(--text-secondary); }
+.text-small     { font-size: 13px; }
+.text-xs        { font-size: 11px; }
+.text-mono      { font-family: 'JetBrains Mono', 'Fira Code', monospace; font-size: 13px; }
+
+/* ── Streamlit markdown overrides ────────────────────────────── */
+.stMarkdown p {
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.stMarkdown strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.stMarkdown code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  background: var(--border);
+  padding: 2px 6px;
+  border-radius: 4px;
+}

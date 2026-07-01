@@ -1,0 +1,22 @@
+/* ============================================================
+   styles/sidebar.css — Sidebar & filter panel styles
+   ============================================================ */
+
+/* Hide default Streamlit sidebar trigger */
+[data-testid="collapsedControl"] {
+  display: none !important;
+}
+
+/* Custom sidebar when used */
+[data-testid="stSidebar"] {
+  background: var(--bg-secondary) !important;
+  border-right: 1px solid var(--border) !important;
+}
+
+[data-testid="stSidebar"] .stMarkdown h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}

@@ -1,0 +1,8 @@
+# assets/animations/ — File animasi Lottie (.json)
+# Download dari lottiefiles.com, simpan sebagai file .json
+# Contoh penggunaan:
+#   from streamlit_lottie import st_lottie
+#   import json
+#   with open("assets/animations/loading.json") as f:
+#       anim = json.load(f)
+#   st_lottie(anim, height=200)
