@@ -3,6 +3,8 @@ services/csv_service.py — Load & validasi CSV fixed dari data/
 PRD Section 2 & 8: dataset fixed di-commit ke repo, baca sekali pakai cache.
 """
 
+from __future__ import annotations
+
 import pandas as pd
 import streamlit as st
 from pathlib import Path

@@ -3,6 +3,8 @@ components/icon.py — render_icon() helper untuk Lucide SVG lokal
 PRD Section 6: bundle SVG lokal, bukan fetch dari CDN.
 """
 
+from __future__ import annotations
+
 import streamlit as st
 from pathlib import Path
 

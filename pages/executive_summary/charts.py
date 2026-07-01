@@ -24,7 +24,7 @@ def placeholder_chart(title: str = "Chart") -> None:
     t = get_active_tokens()
     fig.update_layout(
         title=title,
-        **get_plotly_layout(st.session_state.get("theme", "dark")),
+        **get_plotly_layout(st.session_state.get("theme", "light")),
         height=300,
     )
     st.plotly_chart(fig, use_container_width=True)
@@ -35,12 +35,12 @@ def placeholder_chart(title: str = "Chart") -> None:
 def trend_chart(df: pd.DataFrame, x_col: str, y_col: str, title: str = "Tren") -> None:
     """Line/area chart tren utama."""
     fig = px.area(df, x=x_col, y=y_col, title=title)
-    fig.update_layout(**get_plotly_layout(st.session_state.get("theme", "dark")))
+    fig.update_layout(**get_plotly_layout(st.session_state.get("theme", "light")))
     st.plotly_chart(fig, use_container_width=True)
 
 
 def distribution_chart(df: pd.DataFrame, col: str, title: str = "Distribusi") -> None:
     """Histogram distribusi."""
     fig = px.histogram(df, x=col, title=title)
-    fig.update_layout(**get_plotly_layout(st.session_state.get("theme", "dark")))
+    fig.update_layout(**get_plotly_layout(st.session_state.get("theme", "light")))
     st.plotly_chart(fig, use_container_width=True)

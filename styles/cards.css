@@ -12,8 +12,8 @@
 }
 
 .gt-card:hover {
-  border-color: rgba(59, 130, 246, 0.4);
-  box-shadow: 0 8px 32px rgba(59, 130, 246, 0.08);
+  border-color: rgba(var(--primary-rgb), 0.4);
+  box-shadow: 0 8px 32px rgba(var(--primary-rgb), 0.08);
 }
 
 /* ── Card header ─────────────────────────────────────────────── */

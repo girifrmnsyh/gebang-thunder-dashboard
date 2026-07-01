@@ -3,6 +3,8 @@ utils/formatter.py — Format angka & tanggal konvensi Indonesia
 PRD Section 3: titik (.) untuk ribuan, koma (,) untuk desimal, DD/MM/YYYY
 """
 
+from __future__ import annotations
+
 from datetime import datetime
 from config.constants import DATE_FORMAT, DECIMAL_SEPARATOR, THOUSAND_SEPARATOR
 

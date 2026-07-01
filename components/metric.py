@@ -2,6 +2,8 @@
 components/metric.py — Metric display components
 """
 
+from __future__ import annotations
+
 import streamlit as st
 from utils.formatter import format_number, format_integer, format_percentage
 

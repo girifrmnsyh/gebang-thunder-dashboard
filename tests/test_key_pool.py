@@ -73,10 +73,12 @@ class TestKeyPool:
         assert pool.get_key() is None
 
     def test_alias_masks_key(self):
-        assert KeyPool._alias("abcdef1234") == "sk-...1234"
+        from utils.key_pool import KeyPool
+        assert pool = KeyPool._alias("abcdef1234") == "sk-...1234"
 
     def test_alias_short_key(self):
-        assert KeyPool._alias("ab") == "sk-****"
+        from utils.key_pool import KeyPool
+        assert pool = KeyPool._alias("ab") == "sk-****"
 
 
 def test_alias_standalone():

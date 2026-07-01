@@ -2,6 +2,8 @@
 components/tables.py — Styled data table components
 """
 
+from __future__ import annotations
+
 import pandas as pd
 import streamlit as st
 

@@ -16,7 +16,7 @@ def render_navbar(active_page: str = "home") -> None:
     Render navbar dynamic island via custom HTML/CSS.
     Navigasi mengubah st.query_params lalu trigger rerun.
     """
-    theme = st.session_state.get("theme", "dark")
+    theme = st.session_state.get("theme", "light")
     theme_icon = "☀️" if theme == "dark" else "🌙"
     theme_label = "Mode Terang" if theme == "dark" else "Mode Gelap"
 

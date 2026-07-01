@@ -12,7 +12,7 @@ import streamlit as st
 
 DEFAULTS: dict = {
     # Tema UI
-    "theme": "dark",
+    "theme": "light",
 
     # Executive Summary — filter aktif
     "exec_filters": {},
@@ -45,7 +45,7 @@ def reset_chat_history() -> None:
 
 def toggle_theme() -> None:
     """Toggle antara light dan dark mode."""
-    current = st.session_state.get("theme", "dark")
+    current = st.session_state.get("theme", "light")
     st.session_state["theme"] = "light" if current == "dark" else "dark"
 
 

@@ -17,6 +17,7 @@ TOKENS = {
         "card":                 "#FFFFFF",
         "border":               "#E5E7EB",
         "primary":              "#2563EB",
+        "primary_rgb":          "37, 99, 235",
         "hover":                "#EFF6FF",
         "text_primary":         "#111827",
         "text_secondary":       "#6B7280",
@@ -27,6 +28,7 @@ TOKENS = {
         "card":                 "#18181B",
         "border":               "#27272A",
         "primary":              "#3B82F6",
+        "primary_rgb":          "59, 130, 246",
         "hover":                "rgba(59,130,246,0.12)",
         "text_primary":         "#FAFAFA",
         "text_secondary":       "#A1A1AA",
@@ -34,18 +36,18 @@ TOKENS = {
 }
 
 
-def get_tokens(mode: str = "dark") -> dict:
+def get_tokens(mode: str = "light") -> dict:
     """Kembalikan dict token warna sesuai mode ('light' / 'dark')."""
-    return TOKENS.get(mode, TOKENS["dark"])
+    return TOKENS.get(mode, TOKENS["light"])
 
 
 def get_active_tokens() -> dict:
     """Baca mode dari session_state, kembalikan token yang sesuai."""
-    mode = st.session_state.get("theme", "dark")
+    mode = st.session_state.get("theme", "light")
     return get_tokens(mode)
 
 
-def get_plotly_layout(mode: str = "dark") -> dict:
+def get_plotly_layout(mode: str = "light") -> dict:
     """
     Kembalikan dict layout Plotly yang sudah disesuaikan dengan color tokens.
     Gunakan sebagai: fig.update_layout(**get_plotly_layout())

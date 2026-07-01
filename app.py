@@ -37,6 +37,29 @@ def load_css(filepath: str) -> None:
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 load_css("styles/main.css")
+load_css("styles/cards.css")
+load_css("styles/sidebar.css")
+load_css("styles/typography.css")
+
+# Inject dynamic theme variables based on session state
+from config.theme import get_active_tokens
+t = get_active_tokens()
+theme_css = f"""
+<style>
+:root {{
+  --bg:           {t['background']};
+  --bg-secondary: {t['secondary_background']};
+  --card:         {t['card']};
+  --border:       {t['border']};
+  --primary:      {t['primary']};
+  --primary-rgb:  {t['primary_rgb']};
+  --hover:        {t['hover']};
+  --text-primary: {t['text_primary']};
+  --text-secondary: {t['text_secondary']};
+}}
+</style>
+"""
+st.markdown(theme_css, unsafe_allow_html=True)
 
 # ── Render navbar (fixed, dynamic island style) ───────────────────────────────
 render_navbar(active_page=page_param)

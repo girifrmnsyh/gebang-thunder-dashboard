@@ -10,6 +10,8 @@ Error handling per tipe:
   - semua key exhausted → graceful fallback message
 """
 
+from __future__ import annotations
+
 import hashlib
 import streamlit as st
 import google.generativeai as genai

@@ -3,6 +3,8 @@ components/cards.py — Reusable card components
 PRD Section 5: bento-grid cards (long & short) untuk Executive Summary.
 """
 
+from __future__ import annotations
+
 import streamlit as st
 
 

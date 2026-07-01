@@ -9,6 +9,8 @@ Strategi:
   - Graceful fallback kalau semua key exhausted
 """
 
+from __future__ import annotations
+
 import time
 import logging
 import streamlit as st
