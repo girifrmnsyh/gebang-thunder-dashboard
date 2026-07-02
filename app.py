@@ -43,6 +43,7 @@ load_css("styles/typography.css")
 
 # Inject dynamic theme variables based on session state
 from config.theme import get_active_tokens
+theme_mode = st.session_state.get("theme", "light")
 t = get_active_tokens()
 theme_css = f"""
 <style>
@@ -58,6 +59,22 @@ theme_css = f"""
   --text-secondary: {t['text_secondary']};
 }}
 </style>
+<script>
+// Set data-theme attribute pada root element agar CSS selector [data-theme='dark'] bekerja
+(function() {{
+  var mode = "{theme_mode}";
+  document.documentElement.setAttribute('data-theme', mode);
+  document.body.setAttribute('data-theme', mode);
+  // Tambahkan/hapus class dark pada body sebagai fallback
+  if (mode === 'dark') {{
+    document.documentElement.classList.add('dark');
+    document.body.classList.add('dark');
+  }} else {{
+    document.documentElement.classList.remove('dark');
+    document.body.classList.remove('dark');
+  }}
+}})();
+</script>
 """
 st.markdown(theme_css, unsafe_allow_html=True)
 

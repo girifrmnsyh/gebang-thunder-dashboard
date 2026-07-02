@@ -3,8 +3,21 @@
    PRD Section 6: Inter font, 8px grid, dark/light mode tokens
    ============================================================ */
 
-/* ── Google Fonts: Inter ────────────────────────────────────── */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+/* ── Local Inter font (assets/fonts/) ───────────────────────── */
+@font-face {
+  font-family: 'Inter';
+  src: url('../assets/fonts/InterVariable.woff2') format('woff2-variations');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Inter';
+  src: url('../assets/fonts/InterVariable-Italic.woff2') format('woff2-variations');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
 
 /* ── CSS Custom Properties (Light mode default) ────────────── */
 :root {
@@ -44,33 +57,207 @@
 /* ── Global resets ───────────────────────────────────────────── */
 * { box-sizing: border-box; }
 
-/* ── Streamlit overrides ─────────────────────────────────────── */
+/* ── Streamlit overrides ─────────────────────────────────── */
 .stApp {
   background-color: var(--bg) !important;
   font-family: 'Inter', sans-serif !important;
+}
+
+/* Global: semua elemen pakai Inter */
+body, input, select, textarea, button {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+}
+
+/* Beri ruang atas untuk fixed navbar (72px tinggi navbar + 16px top offset + 8px extra) */
+.stApp > div:first-child > div:first-child,
+[data-testid="stAppViewContainer"] > section,
+[data-testid="stAppViewContainer"] > div {
+  padding-top: 80px !important;
 }
 
 /* Hide default Streamlit header & footer */
 header[data-testid="stHeader"],
 footer { display: none !important; }
 
-/* ── Navbar ──────────────────────────────────────────────────── */
-.navbar-brand {
+/* ── Navbar — Dynamic Island (Minimalist Redesign) ──────────── */
+
+/* Wrapper: posisi fixed centered + z-index di atas konten */
+.gt-navbar-wrapper {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  width: auto;
+  max-width: calc(100vw - 48px);
+  pointer-events: none; /* biarkan klik tembus ke bawah kecuali pada elemen nav */
+}
+
+/* Pill card utama */
+.gt-navbar {
+  pointer-events: all;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 8px 16px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 9999px;           /* fully rounded / pill */
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 0 0 1px var(--border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  white-space: nowrap;
+  transition: box-shadow 0.2s ease;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* ── Brand (kiri) ──────────────────────────────────────────── */
+.gt-navbar__brand {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 12px 0;
+  flex-shrink: 0;
+  text-decoration: none;
 }
 
-.navbar-logo {
-  font-size: 24px;
+.gt-navbar__logo {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
 }
 
-.navbar-team {
-  font-size: 15px;
+/* Override warna SVG logo ke primary color (light: #2563EB) */
+/* filter value di-generate dari: https://codepen.io/sosuke/pen/Pjoqqp */
+.gt-navbar__logo {
+  filter: brightness(0) saturate(100%) invert(21%) sepia(95%) saturate(1800%)
+          hue-rotate(216deg) brightness(98%) contrast(97%);
+}
+
+/* Dark mode: logo warna primary blue (#3B82F6) */
+[data-theme='dark'] .gt-navbar__logo,
+.dark .gt-navbar__logo {
+  filter: brightness(0) saturate(100%) invert(45%) sepia(80%) saturate(600%)
+          hue-rotate(200deg) brightness(110%) contrast(100%);
+}
+
+.gt-navbar__brand-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  line-height: 1.2;
+}
+
+.gt-navbar__team-name {
+  font-size: 13px;
   font-weight: 600;
   color: var(--text-primary);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
+}
+
+.gt-navbar__team-id {
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--text-secondary);
+  letter-spacing: 0;
+}
+
+/* ── Nav links (tengah) ────────────────────────────────────── */
+.gt-navbar__nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.nav-link {
+  font-family: 'Inter', sans-serif;
+  font-size: 13.5px;
+  font-weight: 400;
+  color: var(--text-primary);
+  text-decoration: none;
+  padding: 5px 12px;
+  border-radius: 9999px;
+  transition: all 0.15s ease;
+  position: relative;
+  letter-spacing: -0.01em;
+  display: inline-block;
+}
+
+/* Hover state: bold + bg tint */
+.nav-link:hover {
+  font-weight: 600;
+  background: var(--hover);
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+/* Active / current page: bold + underline */
+.nav-link--active {
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.nav-link--active::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 12px;
+  right: 12px;
+  height: 2px;
+  background: var(--text-primary);
+  border-radius: 2px;
+}
+
+/* ── Theme toggle (kanan) ──────────────────────────────────── */
+.gt-navbar__toggle {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 9999px;
+  border: 1px solid var(--border);
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+  padding: 0;
+  text-decoration: none; /* untuk variant <a> */
+  color: inherit;
+}
+
+.gt-navbar__toggle:hover {
+  background: var(--hover);
+  border-color: var(--primary);
+  text-decoration: none;
+}
+
+.gt-navbar__toggle-icon {
+  width: 15px;
+  height: 15px;
+  display: block;
+  flex-shrink: 0;
+  /* Light mode: warna abu-abu (text-secondary #6B7280) */
+  filter: brightness(0) saturate(100%) invert(49%) sepia(7%) saturate(497%) hue-rotate(182deg) brightness(90%) contrast(90%);
+}
+
+/* Dark mode: icon toggle warna terang (#A1A1AA) */
+[data-theme='dark'] .gt-navbar__toggle-icon,
+.dark .gt-navbar__toggle-icon {
+  filter: brightness(0) invert(0.7) saturate(0) opacity(0.8);
+}
+
+/* ── Sembunyikan hidden Streamlit theme button ─────────────── */
+/* Container wrapper yang membungkus Streamlit hidden button */
+.gt-theme-trigger-wrapper {
+  position: fixed !important;
+  left: -9999px !important;
+  top: -9999px !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  opacity: 0 !important;
+  pointer-events: all !important; /* tetap bisa di-click via JS */
+  z-index: -1 !important;
 }
 
 /* ── Page titles ─────────────────────────────────────────────── */
