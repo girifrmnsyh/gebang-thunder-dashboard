@@ -173,207 +173,209 @@ def render_navbar(active_page: str = "home") -> None:
 
     # ── Render navbar HTML ────────────────────────────────────────────────────
     navbar_html = f"""
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
-  /* ── Wrapper: fixed centered floating pill ─────────────────── */
-  .gt-navbar-wrapper {{
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 99999;
-    width: max-content;
-    max-width: calc(100vw - 48px);
-    pointer-events: none;
-  }}
+      /* ── Wrapper: fixed centered floating pill ─────────────────── */
+      .gt-navbar-wrapper {{
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 99999;
+        width: max-content;
+        max-width: calc(100vw - 48px);
+        pointer-events: none;
+      }}
 
-  /* ── Pill card (Dynamic Island) ────────────────────────────── */
-  .gt-navbar {{
-    pointer-events: all;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    padding: 7px 12px;
-    background: {css_navbar_bg};
-    border: 1px solid {css_navbar_border};
-    border-radius: 9999px;
-    box-shadow: {css_navbar_shadow};
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    white-space: nowrap;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    transition: box-shadow 0.25s ease;
-  }}
+      /* ── Pill card (Dynamic Island) ────────────────────────────── */
+      .gt-navbar {{
+        pointer-events: all;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 7px 12px;
+        background: {css_navbar_bg};
+        border: 1px solid {css_navbar_border};
+        border-radius: 9999px;
+        box-shadow: {css_navbar_shadow};
+        backdrop-filter: blur(20px) saturate(180%);
+        -webkit-backdrop-filter: blur(20px) saturate(180%);
+        white-space: nowrap;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        transition: box-shadow 0.25s ease;
+      }}
 
-  /* ── Brand kiri ─────────────────────────────────────────────── */
-  .gt-navbar__brand {{
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    flex-shrink: 0;
-    text-decoration: none !important;
-  }}
+      /* ── Brand kiri ─────────────────────────────────────────────── */
+      .gt-navbar__brand {{
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        flex-shrink: 0;
+        text-decoration: none !important;
+      }}
 
-  .gt-navbar__logo {{
-    width: 20px;
-    height: 20px;
-    flex-shrink: 0;
-    display: block;
-  }}
+      .gt-navbar__logo {{
+        width: 20px;
+        height: 20px;
+        flex-shrink: 0;
+        display: block;
+      }}
 
-  .gt-navbar__brand-text {{
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    line-height: 1.15;
-  }}
+      .gt-navbar__brand-text {{
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        line-height: 1.15;
+      }}
 
-  .gt-navbar__team-name {{
-    font-size: 12.5px;
-    font-weight: 600;
-    color: {css_text_primary};
-    letter-spacing: -0.01em;
-  }}
+      .gt-navbar__team-name {{
+        font-size: 12.5px;
+        font-weight: 600;
+        color: {css_text_primary};
+        letter-spacing: -0.01em;
+      }}
 
-  .gt-navbar__team-id {{
-    font-size: 10px;
-    font-weight: 400;
-    color: {css_text_secondary};
-    letter-spacing: 0.01em;
-  }}
+      .gt-navbar__team-id {{
+        font-size: 10px;
+        font-weight: 400;
+        color: {css_text_secondary};
+        letter-spacing: 0.01em;
+      }}
 
-  /* Divider tipis antara brand dan nav */
-  .gt-navbar__divider {{
-    width: 1px;
-    height: 18px;
-    background: {css_divider};
-    flex-shrink: 0;
-  }}
+      /* Divider tipis antara brand dan nav */
+      .gt-navbar__divider {{
+        width: 1px;
+        height: 18px;
+        background: {css_divider};
+        flex-shrink: 0;
+      }}
 
-  /* ── Nav links tengah ───────────────────────────────────────── */
-  .gt-navbar__nav {{
-    display: flex;
-    align-items: center;
-    gap: 2px;
-  }}
+      /* ── Nav links tengah ───────────────────────────────────────── */
+      .gt-navbar__nav {{
+        display: flex;
+        align-items: center;
+        gap: 2px;
+      }}
 
-  .nav-link {{
-    font-family: 'Inter', sans-serif;
-    font-size: 13.5px;
-    font-weight: 500;
-    color: {css_text_primary};
-    text-decoration: none !important;
-    padding: 5px 11px;
-    border-radius: 9999px;
-    transition: background 0.15s ease, color 0.15s ease, font-weight 0.1s ease;
-    position: relative;
-    letter-spacing: -0.01em;
-    display: inline-block;
-  }}
+      .nav-link {{
+        font-family: 'Inter', sans-serif;
+        font-size: 13.5px;
+        font-weight: 500;
+        color: {css_text_primary};
+        text-decoration: none !important;
+        padding: 5px 11px;
+        border-radius: 9999px;
+        transition: background 0.15s ease, color 0.15s ease, font-weight 0.1s ease;
+        position: relative;
+        letter-spacing: -0.01em;
+        display: inline-block;
+      }}
 
-  .nav-link:hover {{
-    font-weight: 600;
-    color: {css_text_primary};
-    background: {css_hover_bg};
-    text-decoration: none !important;
-  }}
+      .nav-link:hover {{
+        font-weight: 600;
+        color: {css_text_primary};
+        background: {css_hover_bg};
+        text-decoration: none !important;
+      }}
 
-  /* Active state: bold + background tint + underline primer */
-  .nav-link--active {{
-    font-weight: 700;
-    color: {css_text_primary};
-    background: {css_hover_bg};
-  }}
+      /* Active state: bold + background tint + underline primer */
+      .nav-link--active {{
+        font-weight: 700;
+        color: {css_text_primary};
+        background: {css_hover_bg};
+      }}
 
-  .nav-link--active::after {{
-    content: '';
-    position: absolute;
-    bottom: 3px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: calc(100% - 22px);
-    height: 2px;
-    background: {css_active_underline};
-    border-radius: 2px;
-    opacity: 0.9;
-  }}
+      .nav-link--active::after {{
+        content: '';
+        position: absolute;
+        bottom: 3px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: calc(100% - 22px);
+        height: 2px;
+        background: {css_active_underline};
+        border-radius: 2px;
+        opacity: 0.9;
+      }}
 
-  /* ── Theme toggle kanan ─────────────────────────────────────── */
-  .gt-navbar__toggle {{
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 30px;
-    height: 30px;
-    border-radius: 9999px;
-    border: 1px solid {css_toggle_border};
-    background: {css_toggle_bg};
-    cursor: pointer;
-    transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
-    padding: 0;
-    text-decoration: none !important;
-    color: inherit;
-  }}
+      /* ── Theme toggle kanan ─────────────────────────────────────── */
+      .gt-navbar__toggle {{
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        border-radius: 9999px;
+        border: 1px solid {css_toggle_border};
+        background: {css_toggle_bg};
+        cursor: pointer;
+        transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+        padding: 0;
+        text-decoration: none !important;
+        color: inherit;
+      }}
 
-  .gt-navbar__toggle:hover {{
-    background: {css_toggle_hover_bg};
-    border-color: {css_toggle_hover_bdr};
-    transform: scale(1.10);
-    text-decoration: none !important;
-  }}
+      .gt-navbar__toggle:hover {{
+        background: {css_toggle_hover_bg};
+        border-color: {css_toggle_hover_bdr};
+        transform: scale(1.10);
+        text-decoration: none !important;
+      }}
 
-  .gt-navbar__toggle:active {{
-    transform: scale(0.93);
-  }}
+      .gt-navbar__toggle:active {{
+        transform: scale(0.93);
+      }}
 
-  .gt-navbar__toggle-icon {{
-    width: 14px;
-    height: 14px;
-    display: block;
-    flex-shrink: 0;
-  }}
+      .gt-navbar__toggle-icon {{
+        width: 14px;
+        height: 14px;
+        display: block;
+        flex-shrink: 0;
+      }}
 
-  /* ── Streamlit: padding atas agar konten tidak tertimpa navbar ── */
-  [data-testid="stAppViewContainer"] > section:first-child,
-  [data-testid="stAppViewContainer"] > div:first-child {{
-    padding-top: 80px !important;
-  }}
-</style>
+      /* ── Streamlit: padding atas agar konten tidak tertimpa navbar ── */
+      [data-testid="stAppViewContainer"] > section:first-child,
+      [data-testid="stAppViewContainer"] > div:first-child {{
+        padding-top: 80px !important;
+      }}
+    </style>
 
-<div class="gt-navbar-wrapper">
-  <nav class="gt-navbar">
+    <div class="gt-navbar-wrapper">
+      <nav class="gt-navbar">
 
-    <div class="gt-navbar__brand">
-      <img class="gt-navbar__logo"
-           src="{logo_uri}"
-           alt="Gebang Thunder Logo"
-           width="20" height="20" />
-      <div class="gt-navbar__brand-text">
-        <span class="gt-navbar__team-name">Gebang Thunder</span>
-        <span class="gt-navbar__team-id">SSDC2026017</span>
-      </div>
+        <div class="gt-navbar__brand">
+          <img class="gt-navbar__logo"
+               src="{logo_uri}"
+               alt="Gebang Thunder Logo"
+               width="20" height="20" />
+          <div class="gt-navbar__brand-text">
+            <span class="gt-navbar__team-name">Gebang Thunder</span>
+            <span class="gt-navbar__team-id">SSDC2026017</span>
+          </div>
+        </div>
+
+        <div class="gt-navbar__divider"></div>
+
+        <div class="gt-navbar__nav">
+          {menu_html}
+        </div>
+
+        <a href="{toggle_href}"
+           target="_self"
+           class="gt-navbar__toggle"
+           title="{toggle_tooltip}"
+           id="gt-theme-toggle-btn">
+          <img src="{toggle_icon_uri}"
+               alt="Toggle theme"
+               class="gt-navbar__toggle-icon"
+               width="14" height="14" />
+        </a>
+
+      </nav>
     </div>
-
-    <div class="gt-navbar__divider"></div>
-
-    <div class="gt-navbar__nav">
-      {menu_html}
-    </div>
-
-    <a href="{toggle_href}"
-       target="_self"
-       class="gt-navbar__toggle"
-       title="{toggle_tooltip}"
-       id="gt-theme-toggle-btn">
-      <img src="{toggle_icon_uri}"
-           alt="Toggle theme"
-           class="gt-navbar__toggle-icon"
-           width="14" height="14" />
-    </a>
-
-  </nav>
-</div>
-"""
-    st.markdown(navbar_html, unsafe_allow_html=True)
+    """
+    
+    # INI KUNCI UTAMANYA: textwrap.dedent wajib ada agar HTML tidak jadi Code Block
+    st.markdown(textwrap.dedent(navbar_html), unsafe_allow_html=True)
