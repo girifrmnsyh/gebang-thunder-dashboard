@@ -120,8 +120,9 @@ def render_navbar(active_page: str = "home") -> None:
     for page_key, label in menu_items:
         is_active = active_page == page_key
         active_class = "nav-link--active" if is_active else ""
+        # DITAMBAHKAN: target="_self" agar tidak membuka tab baru
         menu_html_parts.append(
-            f'<a class="nav-link {active_class.strip()}" href="?page={page_key}">{label}</a>'
+            f'<a class="nav-link {active_class.strip()}" href="?page={page_key}" target="_self">{label}</a>'
         )
     menu_html = "\n      ".join(menu_html_parts)
 
@@ -220,7 +221,8 @@ def render_navbar(active_page: str = "home") -> None:
         font-family: 'Inter', sans-serif;
         font-size: 13.5px;
         font-weight: 450;
-        color: {css_text_primary};
+        /* DIUBAH: Menggunakan warna primary text (hitam di light, putih di dark) */
+        color: {css_text_primary}; 
         text-decoration: none !important;
         padding: 5px 11px;
         border-radius: 9999px;
@@ -269,7 +271,7 @@ def render_navbar(active_page: str = "home") -> None:
         cursor: pointer;
         transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
         padding: 0;
-        outline: none;
+        text-decoration: none !important;
         color: inherit;
         margin-left: 2px;
       }}
@@ -278,6 +280,7 @@ def render_navbar(active_page: str = "home") -> None:
         background: {css_toggle_hover_bg};
         border-color: {css_toggle_hover_bdr};
         transform: scale(1.08);
+        text-decoration: none !important;
       }}
 
       .gt-navbar__toggle:active {{
@@ -311,13 +314,11 @@ def render_navbar(active_page: str = "home") -> None:
         <div class="gt-navbar__nav">
           {menu_html}
         </div>
-        <button onclick="window.location.href='{toggle_href}'" class="gt-navbar__toggle" title="{toggle_tooltip}" id="gt-theme-toggle-btn">
+        <a href="{toggle_href}" target="_self" class="gt-navbar__toggle" title="{toggle_tooltip}" id="gt-theme-toggle-btn">
           <img src="{toggle_icon_uri}" alt="Toggle theme" class="gt-navbar__toggle-icon" width="15" height="15" />
-        </button>
+        </a>
       </nav>
     </div>
     """
 
-    # KUNCI PERBAIKAN: Gunakan textwrap.dedent() untuk menghapus spasi awal (indentasi)
-    # yang menyebabkan Streamlit membacanya sebagai Markdown Code Block
     st.markdown(textwrap.dedent(navbar_html), unsafe_allow_html=True)
